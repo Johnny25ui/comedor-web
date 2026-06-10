@@ -16,39 +16,26 @@
 
 <h2>Panel Administrador</h2>
 
-<input
-id="clave"
-type="password"
-placeholder="Contraseña">
+<input id="clave" type="password" placeholder="Contraseña">
 
-<button onclick="login()">
+<button id="btnEntrar">
 Entrar
 </button>
 
 <div id="panel" style="display:none;">
 
-<input
-id="sopa"
-placeholder="Sopa">
+<input id="sopa" placeholder="Sopa">
 
-<input
-id="plato"
-placeholder="Plato fuerte">
+<input id="plato" placeholder="Plato fuerte">
 
-<input
-id="bebida"
-placeholder="Bebida">
+<input id="bebida" placeholder="Bebida">
 
-<input
-id="precio"
-placeholder="Precio">
+<input id="precio" placeholder="Precio">
 
-<input
-id="imagen"
-placeholder="URL Imagen">
+<input id="imagen" placeholder="URL Imagen">
 
-<button onclick="guardar()">
-Guardar
+<button id="btnGuardar">
+Guardar Menú
 </button>
 
 </div>
@@ -57,7 +44,7 @@ Guardar
 
 </div>
 
-<script src="admin.js"></script>
+<script type="module" src="admin.js"></script>
 
 </body>
 </html>

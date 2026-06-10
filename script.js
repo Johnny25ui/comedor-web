@@ -1,23 +1,36 @@
-fetch("menu.json")
-.then(response => response.json())
-.then(menu => {
+import { db } from "./firebase.js";
 
-document.getElementById("fecha").innerHTML =
-"Hoy: " + new Date().toLocaleDateString("es-EC");
+import {
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-document.getElementById("fotoMenu").src =
-menu.imagen;
+const fecha = document.getElementById("fecha");
+const sopa = document.getElementById("sopa");
+const plato = document.getElementById("plato");
+const bebida = document.getElementById("bebida");
+const precio = document.getElementById("precio");
+const foto = document.getElementById("fotoMenu");
 
-document.getElementById("sopa").innerHTML =
-"🥣 " + menu.sopa;
+async function cargarMenu() {
 
-document.getElementById("plato").innerHTML =
-"🍛 " + menu.plato;
+  const referencia = doc(db, "menu", "hoy");
 
-document.getElementById("bebida").innerHTML =
-"🥤 " + menu.bebida;
+  const documento = await getDoc(referencia);
 
-document.getElementById("precio").innerHTML =
-menu.precio;
+  if (documento.exists()) {
 
-});
+    const datos = documento.data();
+
+    fecha.innerHTML =
+      "Hoy: " + new Date().toLocaleDateString("es-EC");
+
+    sopa.innerHTML = "🥣 " + datos.sopa;
+    plato.innerHTML = "🍛 " + datos.plato;
+    bebida.innerHTML = "🥤 " + datos.bebida;
+    precio.innerHTML = datos.precio;
+    foto.src = datos.imagen;
+  }
+}
+
+cargarMenu();

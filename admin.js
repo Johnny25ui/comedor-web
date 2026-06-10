@@ -1,36 +1,62 @@
-function login(){
+import { db } from "./firebase.js";
 
-const clave =
-document.getElementById("clave").value;
+import {
+  doc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-if(clave === "1234"){
+const btnEntrar =
+document.getElementById("btnEntrar");
 
-document.getElementById("panel").style.display = "block";
+const btnGuardar =
+document.getElementById("btnGuardar");
 
-}else{
+btnEntrar.addEventListener("click", () => {
 
-alert("Contraseña incorrecta");
+  const clave =
+  document.getElementById("clave").value;
 
-}
+  if (clave === "1234") {
 
-}
+    document.getElementById("panel").style.display =
+    "block";
 
-function guardar(){
+  } else {
 
-const datos = {
+    alert("Contraseña incorrecta");
 
-sopa: document.getElementById("sopa").value,
-plato: document.getElementById("plato").value,
-bebida: document.getElementById("bebida").value,
-precio: document.getElementById("precio").value,
-imagen: document.getElementById("imagen").value
+  }
 
-};
+});
 
-console.log(datos);
+btnGuardar.addEventListener("click", async () => {
 
-alert(
-"GitHub Pages no permite guardar archivos directamente. Más adelante conectaremos Firebase para guardar cambios reales."
-);
+  const sopa =
+  document.getElementById("sopa").value;
 
-}
+  const plato =
+  document.getElementById("plato").value;
+
+  const bebida =
+  document.getElementById("bebida").value;
+
+  const precio =
+  document.getElementById("precio").value;
+
+  const imagen =
+  document.getElementById("imagen").value;
+
+  await updateDoc(
+    doc(db, "menu", "hoy"),
+    {
+      sopa,
+      plato,
+      bebida,
+      precio,
+      imagen
+    }
+  );
+
+  alert("Menú actualizado correctamente");
+
+});
