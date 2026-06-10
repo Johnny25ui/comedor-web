@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administrador</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Panel Administrador</h2>
+
+<input
+id="clave"
+type="password"
+placeholder="Contraseña">
+
+<button onclick="login()">
+Entrar
+</button>
+
+<div id="panel" style="display:none;">
+
+<input
+id="sopa"
+placeholder="Sopa">
+
+<input
+id="plato"
+placeholder="Plato fuerte">
+
+<input
+id="bebida"
+placeholder="Bebida">
+
+<input
+id="precio"
+placeholder="Precio">
+
+<input
+id="imagen"
+placeholder="URL Imagen">
+
+<button onclick="guardar()">
+Guardar
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

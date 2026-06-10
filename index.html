@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comedor El Buen Sabor</title>
+<title>Mi Comedor</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <header>
-    <h1>🍽️ Comedor El Buen Sabor</h1>
-    <p>Almuerzos caseros todos los días</p>
+    <h1>🍽️ Mi Comedor</h1>
+    <p id="fecha"></p>
 </header>
 
 <div class="container">
 
-    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800"
-         alt="Almuerzo">
+    <img id="fotoMenu" alt="Menú del día">
 
     <div class="card">
+
         <h2>Menú del Día</h2>
 
-        <p>🥣 Sopa de pollo</p>
-        <p>🍛 Arroz con carne asada</p>
-        <p>🥤 Jugo natural</p>
+        <p id="sopa"></p>
+        <p id="plato"></p>
+        <p id="bebida"></p>
 
-        <h3>$3.50</h3>
+        <h3 id="precio"></h3>
 
-        <a class="btn" href="https://wa.me/593999999999">
-            Pedir por WhatsApp
-        </a>
     </div>
 
 </div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
