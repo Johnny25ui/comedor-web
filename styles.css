@@ -35,6 +35,7 @@ img{
     padding:25px;
     border-radius:15px;
     box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom:20px;
 }
 
 .card p{
@@ -46,18 +47,4 @@ img{
     color:#ff6b00;
     margin:20px;
     font-size:32px;
-}
-
-input{
-    width:100%;
-    padding:10px;
-    margin:10px 0;
-}
-
-button{
-    background:#ff6b00;
-    color:white;
-    border:none;
-    padding:10px 20px;
-    cursor:pointer;
 }
