@@ -21,16 +21,16 @@ const menus = {
 };
 
 // 🥗 Cargar Menú 1
-document.getElementById("menu1_sopa").textContent = menus.menu1.sopa;
-document.getElementById("menu1_plato").textContent = menus.menu1.plato;
-document.getElementById("menu1_bebida").textContent = menus.menu1.bebida;
-document.getElementById("menu1_precio").textContent = menus.menu1.precio;
+document.getElementById("sopa").textContent = menus.sopa;
+document.getElementById("plato").textContent = menus.plato;
+document.getElementById("bebida").textContent = menus.bebida;
+document.getElementById("precio").textContent = menus.precio;
 
 // 🍽️ Cargar Menú 2
-document.getElementById("menu2_sopa").textContent = menus.menu2.sopa;
-document.getElementById("menu2_plato").textContent = menus.menu2.plato;
-document.getElementById("menu2_bebida").textContent = menus.menu2.bebida;
-document.getElementById("menu2_precio").textContent = menus.menu2.precio;
+document.getElementById("sopa2").textContent = menus.sopa2;
+document.getElementById("plato2").textContent = menus.plato2;
+document.getElementById("bebida2").textContent = menus.bebida2;
+document.getElementById("precio2").textContent = menus.precio2;
 
 // 🖼️ Imagen del menú (opcional)
 document.getElementById("fotoMenu").src =
