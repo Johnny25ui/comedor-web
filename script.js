@@ -1,36 +1,37 @@
-import { db } from "./firebase.js";
+// 📅 Mostrar fecha
+const fecha = new Date();
+document.getElementById("fecha").textContent =
+  "Hoy: " + fecha.toLocaleDateString("es-EC");
 
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+// 🍽️ Datos de los menús (puedes editarlos aquí)
+const menus = {
+  menu1: {
+    sopa: "🥣 Sopa de pollo",
+    plato: "🍛 Arroz con pollo y ensalada",
+    bebida: "🥤 Jugo de naranja",
+    precio: "$2.50"
+  },
 
-const fecha = document.getElementById("fecha");
-const sopa = document.getElementById("sopa");
-const plato = document.getElementById("plato");
-const bebida = document.getElementById("bebida");
-const precio = document.getElementById("precio");
-const foto = document.getElementById("fotoMenu");
-
-async function cargarMenu() {
-
-  const referencia = doc(db, "menu", "hoy");
-
-  const documento = await getDoc(referencia);
-
-  if (documento.exists()) {
-
-    const datos = documento.data();
-
-    fecha.innerHTML =
-      "Hoy: " + new Date().toLocaleDateString("es-EC");
-
-    sopa.innerHTML = "🥣 " + datos.sopa;
-    plato.innerHTML = "🍛 " + datos.plato;
-    bebida.innerHTML = "🥤 " + datos.bebida;
-    precio.innerHTML = datos.precio;
-    foto.src = datos.imagen;
+  menu2: {
+    sopa: "🥣 Sopa de verduras",
+    plato: "🍛 Carne asada con arroz y menestra",
+    bebida: "🥤 Limonada",
+    precio: "$3.00"
   }
-}
+};
 
-cargarMenu();
+// 🥗 Cargar Menú 1
+document.getElementById("menu1_sopa").textContent = menus.menu1.sopa;
+document.getElementById("menu1_plato").textContent = menus.menu1.plato;
+document.getElementById("menu1_bebida").textContent = menus.menu1.bebida;
+document.getElementById("menu1_precio").textContent = menus.menu1.precio;
+
+// 🍽️ Cargar Menú 2
+document.getElementById("menu2_sopa").textContent = menus.menu2.sopa;
+document.getElementById("menu2_plato").textContent = menus.menu2.plato;
+document.getElementById("menu2_bebida").textContent = menus.menu2.bebida;
+document.getElementById("menu2_precio").textContent = menus.menu2.precio;
+
+// 🖼️ Imagen del menú (opcional)
+document.getElementById("fotoMenu").src =
+  "https://source.unsplash.com/800x400/?food,lunch";
