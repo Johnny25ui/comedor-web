@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 📅 Fecha (ahora seguro funciona)
+  console.log("JS cargado correctamente");
+
+  // 📅 Fecha
   const fechaEl = document.getElementById("fecha");
 
   if (fechaEl) {
-    const fecha = new Date();
     fechaEl.textContent =
-      "Hoy: " + fecha.toLocaleDateString("es-EC");
+      "Hoy: " + new Date().toLocaleDateString("es-EC");
   }
 
   // 🍽️ Menús
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       bebida: "🥤 Jugo de naranja",
       precio: "$2.50"
     },
+
     menu2: {
       sopa: "🥣 Sopa de verduras",
       plato: "🍛 Carne asada con arroz y menestra",
