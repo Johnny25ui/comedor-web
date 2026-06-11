@@ -1,48 +1,56 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
-  console.log("JS cargado correctamente");
+// 🔥 TU CONFIG DE FIREBASE (debes tenerla igual en tu proyecto)
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "comedor-web.firebaseapp.com",
+  projectId: "comedor-web",
+  storageBucket: "comedor-web.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
+};
 
-  // 📅 Fecha
-  const fechaEl = document.getElementById("fecha");
+// 🚀 Inicializar Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-  if (fechaEl) {
-    fechaEl.textContent =
-      "Hoy: " + new Date().toLocaleDateString("es-EC");
+// 📅 Fecha
+document.getElementById("fecha").textContent =
+  "Hoy: " + new Date().toLocaleDateString("es-EC");
+
+// 🔥 Cargar datos desde Firestore
+async function cargarMenu() {
+
+  const ref = doc(db, "menu", "hoy");
+  const snap = await getDoc(ref);
+
+  if (!snap.exists()) {
+    console.log("No existe el documento");
+    return;
   }
 
-  // 🍽️ Menús
-  const menus = {
-    menu1: {
-      sopa: "🥣 Sopa de pollo",
-      plato: "🍛 Arroz con pollo y ensalada",
-      bebida: "🥤 Jugo de naranja",
-      precio: "$2.50"
-    },
-
-    menu2: {
-      sopa: "🥣 Sopa de verduras",
-      plato: "🍛 Carne asada con arroz y menestra",
-      bebida: "🥤 Limonada",
-      precio: "$3.00"
-    }
-  };
+  const data = snap.data();
 
   // 🍛 Menú 1
-  document.getElementById("sopa").textContent = menus.menu1.sopa;
-  document.getElementById("plato").textContent = menus.menu1.plato;
-  document.getElementById("bebida").textContent = menus.menu1.bebida;
-  document.getElementById("precio").textContent = menus.menu1.precio;
+  document.getElementById("sopa").textContent = data.sopa || "";
+  document.getElementById("plato").textContent = data.plato || "";
+  document.getElementById("bebida").textContent = data.bebida || "";
+  document.getElementById("precio").textContent = data.precio || "";
 
   // 🍽️ Menú 2
-  document.getElementById("sopa2").textContent = menus.menu2.sopa;
-  document.getElementById("plato2").textContent = menus.menu2.plato;
-  document.getElementById("bebida2").textContent = menus.menu2.bebida;
-  document.getElementById("precio2").textContent = menus.menu2.precio;
+  document.getElementById("sopa2").textContent = data.sopa2 || "";
+  document.getElementById("plato2").textContent = data.plato2 || "";
+  document.getElementById("bebida2").textContent = data.bebida2 || "";
+  document.getElementById("precio2").textContent = data.precio2 || "";
 
   // 🖼️ Imagen
-  const img = document.getElementById("fotoMenu");
-  if (img) {
-    img.src = "https://source.unsplash.com/800x400/?food,lunch";
-  }
+  document.getElementById("fotoMenu").src = data.imagen || "";
+}
 
-});
+// ▶ ejecutar
+cargarMenu();
