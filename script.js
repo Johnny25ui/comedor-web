@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 📅 Fecha
-  const fecha = new Date();
-  document.getElementById("fecha").textContent =
-    "Hoy: " + fecha.toLocaleDateString("es-EC");
+  // 📅 Fecha (ahora seguro funciona)
+  const fechaEl = document.getElementById("fecha");
+
+  if (fechaEl) {
+    const fecha = new Date();
+    fechaEl.textContent =
+      "Hoy: " + fecha.toLocaleDateString("es-EC");
+  }
 
   // 🍽️ Menús
   const menus = {
@@ -13,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
       bebida: "🥤 Jugo de naranja",
       precio: "$2.50"
     },
-
     menu2: {
       sopa: "🥣 Sopa de verduras",
       plato: "🍛 Carne asada con arroz y menestra",
@@ -35,7 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("precio2").textContent = menus.menu2.precio;
 
   // 🖼️ Imagen
-  document.getElementById("fotoMenu").src =
-    "https://source.unsplash.com/800x400/?food,lunch";
+  const img = document.getElementById("fotoMenu");
+  if (img) {
+    img.src = "https://source.unsplash.com/800x400/?food,lunch";
+  }
 
 });
