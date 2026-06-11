@@ -1,56 +1,54 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+import { db } from "./firebase.js";
+
 import {
-  getFirestore,
   doc,
   getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// 🔥 TU CONFIG DE FIREBASE (debes tenerla igual en tu proyecto)
-const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "comedor-web.firebaseapp.com",
-  projectId: "comedor-web",
-  storageBucket: "comedor-web.appspot.com",
-  messagingSenderId: "XXXX",
-  appId: "XXXX"
-};
+const fecha = document.getElementById("fecha");
 
-// 🚀 Inicializar Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const sopa = document.getElementById("sopa");
+const plato = document.getElementById("plato");
+const bebida = document.getElementById("bebida");
+const precio = document.getElementById("precio");
 
-// 📅 Fecha
-document.getElementById("fecha").textContent =
-  "Hoy: " + new Date().toLocaleDateString("es-EC");
+const sopa2 = document.getElementById("sopa2");
+const plato2 = document.getElementById("plato2");
+const bebida2 = document.getElementById("bebida2");
+const precio2 = document.getElementById("precio2");
 
-// 🔥 Cargar datos desde Firestore
+const foto = document.getElementById("fotoMenu");
+
 async function cargarMenu() {
 
   const ref = doc(db, "menu", "hoy");
   const snap = await getDoc(ref);
 
   if (!snap.exists()) {
-    console.log("No existe el documento");
+    console.log("No existe el documento menu/hoy");
     return;
   }
 
-  const data = snap.data();
+  const datos = snap.data();
+
+  // 📅 Fecha
+  fecha.innerHTML =
+    "Hoy: " + new Date().toLocaleDateString("es-EC");
 
   // 🍛 Menú 1
-  document.getElementById("sopa").textContent = data.sopa || "";
-  document.getElementById("plato").textContent = data.plato || "";
-  document.getElementById("bebida").textContent = data.bebida || "";
-  document.getElementById("precio").textContent = data.precio || "";
+  sopa.innerHTML = "🥣 " + (datos.sopa || "");
+  plato.innerHTML = "🍛 " + (datos.plato || "");
+  bebida.innerHTML = "🥤 " + (datos.bebida || "");
+  precio.innerHTML = datos.precio || "";
 
   // 🍽️ Menú 2
-  document.getElementById("sopa2").textContent = data.sopa2 || "";
-  document.getElementById("plato2").textContent = data.plato2 || "";
-  document.getElementById("bebida2").textContent = data.bebida2 || "";
-  document.getElementById("precio2").textContent = data.precio2 || "";
+  sopa2.innerHTML = "🥣 " + (datos.sopa2 || "");
+  plato2.innerHTML = "🍛 " + (datos.plato2 || "");
+  bebida2.innerHTML = "🥤 " + (datos.bebida2 || "");
+  precio2.innerHTML = datos.precio2 || "";
 
   // 🖼️ Imagen
-  document.getElementById("fotoMenu").src = data.imagen || "";
+  foto.src = datos.imagen || "";
 }
 
-// ▶ ejecutar
 cargarMenu();
