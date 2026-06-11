@@ -1,9 +1,5 @@
 import { db } from "./firebase.js";
-
-import {
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const fecha = document.getElementById("fecha");
 
@@ -25,30 +21,27 @@ async function cargarMenu() {
   const snap = await getDoc(ref);
 
   if (!snap.exists()) {
-    console.log("No existe el documento menu/hoy");
+    console.log("No hay datos en Firestore");
     return;
   }
 
-  const datos = snap.data();
+  const data = snap.data();
 
-  // 📅 Fecha
-  fecha.innerHTML =
-    "Hoy: " + new Date().toLocaleDateString("es-EC");
+  fecha.textContent = "Hoy: " + new Date().toLocaleDateString("es-EC");
 
   // 🍛 Menú 1
-  sopa.innerHTML = "🥣 " + (datos.sopa || "");
-  plato.innerHTML = "🍛 " + (datos.plato || "");
-  bebida.innerHTML = "🥤 " + (datos.bebida || "");
-  precio.innerHTML = datos.precio || "";
+  sopa.textContent = data.sopa || "";
+  plato.textContent = data.plato || "";
+  bebida.textContent = data.bebida || "";
+  precio.textContent = data.precio || "";
 
   // 🍽️ Menú 2
-  sopa2.innerHTML = "🥣 " + (datos.sopa2 || "");
-  plato2.innerHTML = "🍛 " + (datos.plato2 || "");
-  bebida2.innerHTML = "🥤 " + (datos.bebida2 || "");
-  precio2.innerHTML = datos.precio2 || "";
+  sopa2.textContent = data.sopa2 || "";
+  plato2.textContent = data.plato2 || "";
+  bebida2.textContent = data.bebida2 || "";
+  precio2.textContent = data.precio2 || "";
 
-  // 🖼️ Imagen
-  foto.src = datos.imagen || "";
+  foto.src = data.imagen || "";
 }
 
 cargarMenu();
